@@ -15,11 +15,11 @@ public class Symulacja {
     private int iloscDomow = 0;
     private int iloscBiurowcow = 0;
     private int iloscDrzew = 0;
-    private float szansaNaDeszcz = 0; // miedzy 0% a 100%
-    private int dlugoscsymulacji = 1000; //ilosc klatek do symulacji
-    private float dlugoscKlatki = 1.0f; //sekundy ile ma trwac animacja "miedzyklatkowa"
+    private float szansaNaDeszcz = 0; // miedzy 0% a 100% 100%=1  50%=0.5f   25%=0.25f
+    private static int dlugoscsymulacji = 1000; //ilosc klatek do symulacji
+    private static float dlugoscKlatki = 1.0f; //sekundy ile ma trwac animacja "miedzyklatkowa"
 
-    void InicjalizacjaSektorow(){
+    public void InicjalizacjaSektorow(){
         if(!initialized) {
             for (int i = 0; i < iloscSektorow; i++) {
                 sektory.add(new Sektor());

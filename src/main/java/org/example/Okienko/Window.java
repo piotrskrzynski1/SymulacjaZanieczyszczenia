@@ -11,7 +11,7 @@ public class Window extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(new Dimension(900,506));
         setResizable(false);
-        ImageIcon ikona = new ImageIcon("komin.png");
+        ImageIcon ikona = new ImageIcon("sprity/menu/komin.png");
         setIconImage(ikona.getImage());
 
 

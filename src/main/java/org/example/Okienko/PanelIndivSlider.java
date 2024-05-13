@@ -5,24 +5,32 @@ import javax.swing.event.ChangeEvent;
 import java.awt.*;
 
 public class PanelIndivSlider extends JPanel {
-    PanelIndivSlider(int valuebegin,int valueend,String tekst, boolean procent) {
-        JSlider sliderCar = new JSlider(valuebegin,valueend);
-        JLabel sliderCarText = new JLabel();
+    private final JSlider slider;
+    PanelIndivSlider(int valuebegin,int valueend,String tekst, boolean procent, int minimumJump) {
+        slider = new JSlider(valuebegin,valueend);
+        slider.setMajorTickSpacing(minimumJump);
+        slider.setSnapToTicks(true);
+        slider.setExtent(minimumJump);
+        JLabel sliderText = new JLabel();
         Font font = new Font("IMPACT", Font.PLAIN, 13); // Example font
-        sliderCarText.setFont(font);
-        sliderCarText.setText(tekst + sliderCar.getValue() + (procent ? "%" : ""));
-        sliderCar.addChangeListener((e)->{
-            int value = sliderCar.getValue();
-            sliderCarText.setText(tekst + value + (procent ? "%" : ""));
+        sliderText.setFont(font);
+        sliderText.setText(tekst + slider.getValue() + (procent ? "%" : ""));
+        slider.addChangeListener((e)->{
+            int value = slider.getValue();
+            sliderText.setText(tekst + value + (procent ? "%" : ""));
         });
-        sliderCarText.setForeground(Color.black);
-        sliderCarText.setBounds(sliderCar.getX(),sliderCar.getY()-25,getWidth(),getHeight());
-        sliderCarText.setVerticalAlignment(JLabel.CENTER);
-        sliderCarText.setVerticalTextPosition(JLabel.BOTTOM);
+        sliderText.setForeground(Color.black);
+        sliderText.setBounds(slider.getX(),slider.getY()-25,getWidth(),getHeight());
+        sliderText.setVerticalAlignment(JLabel.CENTER);
+        sliderText.setVerticalTextPosition(JLabel.BOTTOM);
         this.setLayout(new BorderLayout());
-        add(sliderCar,BorderLayout.CENTER);
-        add(sliderCarText,BorderLayout.SOUTH);
+        add(slider,BorderLayout.CENTER);
+        add(sliderText,BorderLayout.SOUTH);
 
+    }
+
+    public int GetValue(){
+        return this.slider.getValue();
     }
 
 }

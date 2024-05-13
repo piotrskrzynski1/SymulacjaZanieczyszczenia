@@ -1,7 +1,11 @@
 package org.example.Okienko;
 
+import org.example.OkienkoSymulacja.SymulacjaWindow;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MainPanel extends JPanel {
     Image tlo;
@@ -28,21 +32,42 @@ public class MainPanel extends JPanel {
         };
         opcje.setOpaque(false);
         opcje.setLayout(new FlowLayout());
+        //opcja sektorow
+        PanelIndivSlider sliderSektorow = new PanelIndivSlider(1,50,"Liczba sektorow: ", false,2);
         //opcja pojazdow
-        PanelIndivSlider sliderAut = new PanelIndivSlider(0,10000,"Liczba aut: ",false);
+        PanelIndivSlider sliderAut = new PanelIndivSlider(0,500000,"Liczba aut: ",false,1);
         //opcja domów
-        PanelIndivSlider sliderDomow = new PanelIndivSlider(0,10000,"Liczba domow: ",false);
+        PanelIndivSlider sliderDomow = new PanelIndivSlider(0,500000,"Liczba domow: ",false,1);
         //opcja fabryk
-        PanelIndivSlider sliderFabryk = new PanelIndivSlider(0,10000,"Liczba fabryk: ",false);
+        PanelIndivSlider sliderFabryk = new PanelIndivSlider(0,100,"Liczba fabryk: ",false,1);
         //opcja biurowców
-        PanelIndivSlider sliderBiurowcow = new PanelIndivSlider(0,10000,"Liczba biurowcow: ",false);
+        PanelIndivSlider sliderBiurowcow = new PanelIndivSlider(0,5000,"Liczba biurowcow: ",false,1);
         //opcja drzew
-        PanelIndivSlider sliderDrzew = new PanelIndivSlider(0,10000,"Liczba drzew: ",false);
+        PanelIndivSlider sliderDrzew = new PanelIndivSlider(0,100000,"Liczba drzew: ",false,1);
         //opcja szansy na deszcz
-        PanelIndivSlider sliderSzansanadeszcz = new PanelIndivSlider(0,100,"Szansa na deszcz: ",true);
+        PanelIndivSlider sliderSzansanadeszcz = new PanelIndivSlider(0,100,"Szansa na deszcz: ",true,1);
         //guzik rozpoczecia
         StartSymulacjaButton startButton = new StartSymulacjaButton();
+        //eventlistener ktory rozpoczyna symulacje po nacisnieciu guzika i przekazuje info
+        startButton.addActionListener((e) -> {
+            if(!startButton.simInProgress) {
+                startButton.simInProgress = true;
+                //STARTUJEMY SYMULACJE
+                final SymulacjaWindow oknoSymulacji = new SymulacjaWindow(sliderAut.GetValue(),sliderDomow.GetValue(),sliderFabryk.GetValue(),sliderBiurowcow.GetValue(),sliderDrzew.GetValue(),sliderSektorow.GetValue(),sliderSzansanadeszcz.GetValue());
+                oknoSymulacji.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int result = JOptionPane.showConfirmDialog(startButton, "Napewno zakonczyc symulacje?", "Exit", JOptionPane.YES_NO_OPTION);
+                        if (result == JOptionPane.YES_OPTION) {
+                            oknoSymulacji.dispose(); // zamyka okno i pozwala rozpoczac nowa symulacje
+                            startButton.simInProgress = false;
+                        }
+                    }
+                });
+            }
+        });
 
+        opcje.add(sliderSektorow);
         opcje.add(sliderAut);
         opcje.add(sliderDomow);
         opcje.add(sliderFabryk);
@@ -55,7 +80,7 @@ public class MainPanel extends JPanel {
         //dodaje panel opcji
         this.add(opcje);
         //tlo
-        tlo = new ImageIcon("menu.jpg").getImage();
+        tlo = new ImageIcon("sprity/menu/menu.jpg").getImage();
     }
     @Override
     protected void paintComponent(Graphics g){

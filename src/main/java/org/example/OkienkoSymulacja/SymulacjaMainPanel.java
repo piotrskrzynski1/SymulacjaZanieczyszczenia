@@ -6,7 +6,7 @@ import java.awt.*;
 public class SymulacjaMainPanel extends JPanel {
     Image tlo;
     SymulacjaMainPanel(){
-        tlo = new ImageIcon("tlosymulacji.gif").getImage();
+        tlo = new ImageIcon("sprity/tlosymulacji.gif").getImage();
     }
 
     @Override
