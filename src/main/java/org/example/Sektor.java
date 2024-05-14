@@ -27,11 +27,6 @@ public class Sektor {
             kolejnosc[i] = values.get(i);
         }
     }
-    static final float[] pozycjeY = {
-            782,
-            810,
-            854
-    }; //pozycje ktore pomagaja ustawic obrazki, wartosci potem ustalam
 
     private float zanieczyszczenie = 0; //mierzone w mikro gram/metr^3
 

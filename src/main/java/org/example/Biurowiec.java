@@ -9,8 +9,8 @@ public class Biurowiec implements Zanieczyszczacze{
 
     public static final ArrayList<ImageIcon> obrazki = new ArrayList<ImageIcon>(Arrays.asList(
             new ImageIcon("Sprity/biurowiec_1.png"),
-            new ImageIcon("Sprity/biurowiec_1.png"),
-            new ImageIcon("Sprity/biurowiec_1.png")
+            new ImageIcon("Sprity/biurowiec_2.png"),
+            new ImageIcon("Sprity/biurowiec_3.png")
         )
     );
 
