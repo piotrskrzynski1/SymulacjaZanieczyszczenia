@@ -20,6 +20,7 @@ import javax.swing.border.Border;
 
 public class SymulacjaWindow extends JFrame {
 
+    public Symulacja symulacja;
     static Map<Integer,ArrayList<ImageIcon>> mapaObrazki = new HashMap<>();
     static {
         mapaObrazki.put(0, Biurowiec.obrazki);
@@ -54,7 +55,7 @@ public class SymulacjaWindow extends JFrame {
         setVisible(true);
 
         //Symulacja
-        Symulacja symulacja = new Symulacja();
+        symulacja = new Symulacja();
         symulacja.SetAuta(auta);
         symulacja.SetDomy(domy);
         symulacja.SetFabryki(fabryki);
@@ -99,5 +100,6 @@ public class SymulacjaWindow extends JFrame {
         int centerY = (int) ((screenSize.getHeight() - frame.getHeight()) / 2)+25;
         frame.setLocation(centerX, centerY);
     }
+
 
 }

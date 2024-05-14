@@ -12,5 +12,4 @@ public class Main {
         Runtime time = Runtime.getRuntime();
         Window mainWindow = new Window();
     }
-
 }

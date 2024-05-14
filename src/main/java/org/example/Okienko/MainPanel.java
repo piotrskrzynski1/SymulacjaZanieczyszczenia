@@ -33,7 +33,7 @@ public class MainPanel extends JPanel {
         opcje.setOpaque(false);
         opcje.setLayout(new FlowLayout());
         //opcja sektorow
-        PanelIndivSlider sliderSektorow = new PanelIndivSlider(1,50,"Liczba sektorow: ", false,2);
+        PanelIndivSlider sliderSektorow = new PanelIndivSlider(1,35,"Liczba sektorow: ", false,2);
         //opcja pojazdow
         PanelIndivSlider sliderAut = new PanelIndivSlider(0,500000,"Liczba aut: ",false,1);
         //opcja domów
